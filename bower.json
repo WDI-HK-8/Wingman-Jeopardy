@@ -1,0 +1,24 @@
+{
+  "name": "Wingman-Jeopardy",
+  "version": "0.0.0",
+  "homepage": "https://github.com/ctlong/Wingman-Jeopardy",
+  "description": "A PvP game, the goal of which is to determine who among the players would be the better wingman (according to traditional Bro Law).",
+  "main": "index.html",
+  "keywords": [
+    "first-project",
+    "wdi",
+    "bro-tests"
+  ],
+  "authors": [
+    "Carson Long",
+    "assited by Fer Martin and Harry Chen"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
