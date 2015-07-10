@@ -1,0 +1,15 @@
+.nav {
+	margin: 10px;
+}
+
+.row {
+	margin: 10px;
+}
+
+table {
+	height: 300px;
+}
+
+.table-bordered>tbody>tr>td {
+	border: 1px solid black;
+}
