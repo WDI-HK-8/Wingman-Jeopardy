@@ -43,6 +43,21 @@ $(document).ready(function() {
     }
   }
 
+  function getSolution(x) {
+    for(var a=0;a<=2;a++) {
+      if($('.answer')[a] == x) {
+        for(var b=0;b<array.length;b++) {
+          for(c in array[b]) {
+            var check = 'answer'+(a+1);
+            if(check == array[b][c]) {
+              return c;
+            }
+          }
+        }
+      }
+    }
+  }
+
 	$(document).on('click','.question',function() {
 		var num = ind(this);
 		var cur = array[num];
@@ -55,8 +70,7 @@ $(document).ready(function() {
 			$(btn).css({display : 'initial'});
 		}
     $('#timer').text('Timer: '+secondsLeft);
-
-		timer = setInterval(function() {
+    timer = setInterval(function() {
         $('#timer').text('Timer: '+secondsLeft);
         if(secondsLeft == 0) {
           $('#question').text('Guess you couldn\'t choose in time, too bad! Next Players turn...');
@@ -65,6 +79,14 @@ $(document).ready(function() {
           clearInterval(timer);
         }
         secondsLeft --;
-    	},1000);
+    },1000);
 	});
+
+  $(document).on('click','.answer',function() {
+    var sol = getSolution(this);
+    $('#question').text('You got this question: '+sol);
+    enableGraph();
+    secondsLeft = 11;
+    clearInterval(timer);
+  })
 });
