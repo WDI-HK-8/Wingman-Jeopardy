@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	var array = [{question : "Your Bro is super drunk and has thrown up, the girl he likes shows up, do you...", answer1 : 'Grab him and run.', answer2 : 'Say it\'s your throw up.', answer3 : 'Tell her that she looks beautiful.', best : 'answer2', okay : 'answer1', bad : 'answer3'}];
+	var array = [{question : "Your Bro is super drunk and has thrown up, the girl he likes shows up, do you...", answer1 : 'Grab him and run', answer2 : 'Say it\'s your throw up', answer3 : 'Tell her that she looks beautiful', best : 'answer2', okay : 'answer1', bad : 'answer3'}];
   	var timer;
   	var ind;
 
@@ -23,6 +23,15 @@ $(document).ready(function() {
   	}
 
   	$(document).on('click','.question',function() {
-  		console.log(ind(this));
+  		var num = ind(this);
+  		var cur = array[num];
+  		$('#question').text(cur.question);
+  		for(var a=0;a<=2;a++) {
+  			var btn = $('.answer')[a];
+  			var str = 'answer'+(a+1)
+  			$(btn).text(cur[str]);
+  			$(btn).css({display : 'initial'});
+  		}
+
   	})
 })

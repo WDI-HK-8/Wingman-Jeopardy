@@ -25,9 +25,13 @@ table {
 	padding: auto;
 }
 
-.btn {
+.btn-default {
 	padding: 0px;
 	margin: auto;
+}
+
+.btn-success {
+	display: none;
 }
 
 nav div {
