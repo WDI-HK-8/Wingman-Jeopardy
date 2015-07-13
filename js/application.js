@@ -2,10 +2,13 @@ $(document).ready(function() {
 	var array = [{question : "Your Bro is super drunk and has thrown up, the girl he likes shows up, do you...", answer1 : 'Grab him and run', answer2 : 'Say it\'s your throw up', answer3 : 'Tell her that she looks beautiful', best : 'answer2', okay : 'answer1', bad : 'answer3'}];
 	var clicked = [];
   var timer;
-	var ind;
+  var curIndex = -1;
+  var curPlayer = 'player1'
+  var player1Score = 0;
+  var player2Score = 0;
   var secondsLeft = 10;
 
-	ind = function(x) {
+	function ind(x) {
     for(var a=0;a<=8;a++) {
       if($('.question')[a] == x) {
         return a;
@@ -58,17 +61,94 @@ $(document).ready(function() {
     }
   }
 
+  function initAnswers(cur) {
+    for(var a=0;a<=2;a++) {
+      var btn = $('.answer')[a];
+      var str = 'answer'+(a+1)
+      $(btn).text(cur[str]);
+      $(btn).css({display : 'initial'});
+    }
+  }
+
+  function updateScore(sol) {
+    if(sol == 'best') {
+      $('#question').text('You got this question completely right!');
+      if(curIndex<3) {
+        if(curPlayer == 'player1') {
+          player1Score += 100;
+          $('#player1').text('Player1: '+player1Score)
+        }
+        else {
+          player2Score += 100;
+          $('#player2').text('Player2: '+player2Score)
+        }
+      }
+      else if(curIndex<6) {
+        if(curPlayer == 'player1') {
+          player1Score += 300;
+          $('#player1').text('Player1: '+player1Score)
+        }
+        else {
+          player2Score += 300;
+          $('#player2').text('Player2: '+player2Score)
+        }
+      }
+      else {
+        if(curPlayer == 'player1') {
+          player1Score += 500;
+          $('#player1').text('Player1: '+player1Score)
+        }
+        else {
+          player2Score += 500;
+          $('#player2').text('Player2: '+player2Score)
+        }
+      }
+    }
+    if(sol == 'okay') {
+      $('#question').text('This is an okay answer I guess.');
+    }
+    if(sol == 'bad') {
+      $('#question').text('That was literally the worst answer you could have chosen.');
+      if(curIndex<3) {
+        if(curPlayer == 'player1') {
+          player1Score -= 100;
+          $('#player1').text('Player1: '+player1Score)
+        }
+        else {
+          player2Score -= 100;
+          $('#player2').text('Player2: '+player2Score)
+        }
+      }
+      else if(curIndex<6) {
+        if(curPlayer == 'player1') {
+          player1Score -= 300;
+          $('#player1').text('Player1: '+player1Score)
+        }
+        else {
+          player2Score -= 300;
+          $('#player2').text('Player2: '+player2Score)
+        }
+      }
+      else {
+        if(curPlayer == 'player1') {
+          player1Score -= 500;
+          $('#player1').text('Player1: '+player1Score)
+        }
+        else {
+          player2Score -= 500;
+          $('#player2').text('Player2: '+player2Score)
+        }
+      }
+    }
+  }
+
 	$(document).on('click','.question',function() {
 		var num = ind(this);
+    curIndex = num;
 		var cur = array[num];
     disableGraph(num);
 		$('#question').text(cur.question);
-		for(var a=0;a<=2;a++) {
-			var btn = $('.answer')[a];
-			var str = 'answer'+(a+1)
-			$(btn).text(cur[str]);
-			$(btn).css({display : 'initial'});
-		}
+		initAnswers(cur);
     $('#timer').text('Timer: '+secondsLeft);
     timer = setInterval(function() {
         $('#timer').text('Timer: '+secondsLeft);
@@ -84,9 +164,10 @@ $(document).ready(function() {
 
   $(document).on('click','.answer',function() {
     var sol = getSolution(this);
-    $('#question').text('You got this question: '+sol);
+    updateScore(sol);
     enableGraph();
-    secondsLeft = 11;
+    secondsLeft = 10;
+    $('#timer').text('Timer: 00');
     clearInterval(timer);
   })
 });
