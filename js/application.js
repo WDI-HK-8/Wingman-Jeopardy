@@ -15,10 +15,6 @@ $(document).ready(function() {
   var player2Score = 0;
   var secondsLeft = 10;
 
-  $('.main').css({display : 'none'});
-  $('#'+curPlayer).parent().css({'background-color' : 'lightblue'});
-  $('#question').text('The number indicates the number of points you will receive upon a correct answer, once you choose a question you will have 10 seconds to answer.')
-
   $(document).on('click','#start',function() {
     $('.main').show();
     $('.container').remove();

@@ -8,6 +8,7 @@
 
 .main {
 	margin: 10px;
+	display: none;
 }
 
 table {
@@ -37,6 +38,10 @@ table {
 nav div {
 	border-left: 1px solid black;
 	border-right: 1px solid black;
+}
+
+nav div:first-child {
+	background-color: lightblue;
 }
 
 nav div p {
