@@ -8,7 +8,14 @@ $(document).ready(function() {
   var player2Score = 0;
   var secondsLeft = 10;
 
+  $('.main').css({display : 'none'});
   $('#'+curPlayer).parent().css({'background-color' : 'lightblue'});
+  $('#question').text('The number indicates the number of points you will receive upon a correct answer, once you choose a question you will have 10 seconds to answer.')
+
+  $(document).on('click','#start',function() {
+    $('.main').show();
+    $('.container').remove();
+  })
 
 	function ind(x) {
     for(var a=0;a<=8;a++) {
@@ -152,8 +159,12 @@ $(document).ready(function() {
   }
 
   function endGame() {
-    if(clicked == 8) {
-      
+    if(clicked.length == 8) {
+      var winner;
+      if(player1Score>player2Score) {winner = 'player1';}
+      else {winner = 'player2';}
+      $('.main').css({display : 'none'});
+      $('.wrapper').prepend('<div class="row end"> <div class="col-xs-12"> <h1>Congratulations '+winner+'! You have proven yourself the better wingman.</h1> <h3>Player1\'s score: '+player1Score+'</h3> <h3>Player2\'s score: '+player2Score+'</h3> </div> </div>');
     }
   }
 
@@ -185,5 +196,6 @@ $(document).ready(function() {
     secondsLeft = 10;
     $('#timer').text('Timer: 00');
     switchPlayer();
+    endGame();
   })
 });
