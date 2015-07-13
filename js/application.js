@@ -8,6 +8,8 @@ $(document).ready(function() {
   var player2Score = 0;
   var secondsLeft = 10;
 
+  $('#'+curPlayer).parent().css({'background-color' : 'lightblue'});
+
 	function ind(x) {
     for(var a=0;a<=8;a++) {
       if($('.question')[a] == x) {
@@ -142,6 +144,19 @@ $(document).ready(function() {
     }
   }
 
+  function switchPlayer() {
+    $('#'+curPlayer).parent().css({'background-color' : 'initial'});
+    if(curPlayer == 'player1') {curPlayer='player2';}
+    else {curPlayer='player1';}
+    $('#'+curPlayer).parent().css({'background-color' : 'lightblue'});
+  }
+
+  function endGame() {
+    if(clicked == 8) {
+      
+    }
+  }
+
 	$(document).on('click','.question',function() {
 		var num = ind(this);
     curIndex = num;
@@ -163,11 +178,12 @@ $(document).ready(function() {
 	});
 
   $(document).on('click','.answer',function() {
+    clearInterval(timer);
     var sol = getSolution(this);
     updateScore(sol);
     enableGraph();
     secondsLeft = 10;
     $('#timer').text('Timer: 00');
-    clearInterval(timer);
+    switchPlayer();
   })
 });
