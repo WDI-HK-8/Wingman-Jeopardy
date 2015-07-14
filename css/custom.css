@@ -80,10 +80,11 @@ nav div {
 	border-right: 1px solid black;
 }
 
-@media(max-width: 430px) {
-  nav div {
-    height: 85px;
-  }
+.end img {
+  width: 700px;
+  background-color: #660033;
+  border-radius: 10px;
+  padding: 2px;
 }
 
 @media(max-width: 600px) {
@@ -92,6 +93,18 @@ nav div {
   }
   .btn-success {
     width: 100px;
+  }
+  .end img {
+    width: 500px;
+  }
+}
+
+@media(max-width: 430px) {
+  nav div {
+    height: 85px;
+  }
+  .end img {
+    width: 300px;
   }
 }
 
@@ -143,5 +156,3 @@ footer img {
   border-radius: 10px;
   padding: 2px;
 }
-
-
