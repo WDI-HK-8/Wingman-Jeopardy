@@ -171,7 +171,9 @@ $(document).ready(function() {
     else {
       name = 'player2';
     }
-    $('#'+name).parent().css({'background-color' : 'initial'});
+    $('#'+name).parent().css({'background-color' : 'lightblue'});
+    $('#'+name).css({'background-color' : 'lightblue'});
+    $('#'+name).css({'color' : 'black'});
     if(curPlayer == player1) {curPlayer=player2;}
     else {curPlayer=player1;}
     if(curPlayer == player1) {
@@ -180,7 +182,9 @@ $(document).ready(function() {
     else {
       name = 'player2';
     }
-    $('#'+name).parent().css({'background-color' : 'lightblue'});
+    $('#'+name).parent().css({'background-color' : '#006666'});
+    $('#'+name).css({'background-color' : '#006666'});
+    $('#'+name).css({'color' : 'white'});
   }
 
   function endGame() {
@@ -222,7 +226,7 @@ $(document).ready(function() {
     updateScore(sol);
     enableGraph();
     secondsLeft = 15;
-    $('#timer').text('Timer: 00');
+    $('#timer').text('Timer: 0');
     switchPlayer();
     endGame();
   })
