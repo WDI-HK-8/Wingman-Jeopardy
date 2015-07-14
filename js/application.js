@@ -63,10 +63,8 @@ $(document).ready(function() {
         cur.disabled = false;
       }
     }
-    for(var a=0;a<=2;a++) {
-      var btn = $('.answer')[a];
-      $(btn).css({display : 'none'});
-    }
+    $('footer .col-xs-8').remove();
+    $('footer>section').removeClass('col-xs-4').addClass('col-xs-12');
   }
 
   function getSolution(x) {
@@ -83,11 +81,12 @@ $(document).ready(function() {
   }
 
   function initAnswers(cur) {
+    $('footer>section').removeClass('col-xs-12').addClass('col-xs-4');
+    $('footer').append('<section class="col-xs-8"> <button class="btn btn-success answer"></button> <button class="btn btn-success answer"></button> <button class="btn btn-success answer"></button> </section>')
     for(var a=0;a<=2;a++) {
       var btn = $('.answer')[a];
       var str = 'answer'+(a+1)
       $(btn).text(cur[str]);
-      $(btn).css({display : 'initial'});
     }
   }
 
