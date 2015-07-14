@@ -1,5 +1,35 @@
 * {
 	text-align: center;
+	background-color: lightblue;
+
+}
+
+.wrapper {
+	
+}
+
+.container img{
+  position: fixed;
+  top: 300px;
+}
+
+@media(max-width: 430px) {
+  .container img{
+    position: fixed;
+    top: 350px;
+  }
+}
+
+.container button{
+	margin: 40px 0px 10px 40px;
+}
+
+.container h1{
+	margin: 40px;
+}
+
+.container p input {
+	background-color: white;
 }
 
 .nav {
@@ -15,15 +45,25 @@ table {
 	height: 300px;
 }
 
+.table {
+  height: 250px;
+}
+
 .table-bordered>tbody>tr>td {
 	border: 1px solid black;
+  padding: auto;
+}
+
+.table>tbody>tr>td {
+  padding: auto;
 }
 
 .table-bordered>tbody>tr>td>button {
 	margin: auto;
 	width: 100%;
-	height: 50px;
+	height: 100%;
 	padding: auto;
+  background-color: lightgreen;
 }
 
 .btn-default {
@@ -40,8 +80,28 @@ nav div {
 	border-right: 1px solid black;
 }
 
+@media(max-width: 430px) {
+  nav div {
+    height: 85px;
+  }
+}
+
 nav div:first-child {
-	background-color: lightblue;
+	background-color: #006666;
+}
+
+#player1 {
+  background-color: #006666;
+  color: white;
+}
+
+nav div:nth-child(2) {
+  background-color: #660033;
+}
+
+#timer {
+  background-color: #660033;
+  color: white;
 }
 
 nav div p {
