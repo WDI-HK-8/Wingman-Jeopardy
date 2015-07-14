@@ -1,5 +1,28 @@
 * {
 	text-align: center;
+	background-color: lightblue;
+
+}
+
+.wrapper {
+	background-image: url('http://static1.squarespace.com/static/51009bd0e4b0f1d8c3160fda/t/530e284ce4b06fdfc388eba9/1436535499312/');
+  background-size: 100% 100%;
+}
+
+.container {
+  background-color: none;
+}
+
+.container button{
+	margin: 40px;
+}
+
+.container h1{
+	margin: 40px;
+}
+
+.container p input {
+	background-color: white;
 }
 
 .nav {

@@ -9,14 +9,27 @@ $(document).ready(function() {
   {question : "You\'re at dinner with your Bro and his crush when your Bro lets out a loud fart, do you...", answer1 : 'Claim it as your own', answer2 : 'Exclaim loudly that your Bro\'s farts smell awful', answer3 : 'Blame it on his crush', best : 'answer3', okay : 'answer1', bad : 'answer2'},
   {question : "You\'re out with your Bro when you see three girls: one attractive, one alright, and one unnattractive, do you...", answer1 : 'Go for the attractive one', answer2 : 'Go for the alright one', answer3 : 'Go for the ugly one', best : 'answer3', okay : 'answer2', bad : 'answer1'}];
 	var clicked = [];
+  var player1;
+  var player2;
   var timer;
   var curIndex = -1;
-  var curPlayer = 'player1'
+  var curPlayer;
   var player1Score = 0;
   var player2Score = 0;
   var secondsLeft = 15;
 
   $(document).on('click','#start',function() {
+    while($('input')[0].value == '') {
+      $('input')[0].value = prompt('please enter a name');
+    }
+    player1 = $('input')[0].value;
+    while($('input')[1].value == '') {
+      $('input')[1].value = prompt('please enter a name');
+    }
+    player2 = $('input')[1].value;
+    $('#player1').text(player1+': 0');
+    $('#player2').text(player2+': 0');
+    curPlayer = player1;
     $('.main').show();
     $('.container').remove();
   })
@@ -82,33 +95,33 @@ $(document).ready(function() {
     if(sol == 'best') {
       $('#question').text('You got this question completely right!');
       if(curIndex<3) {
-        if(curPlayer == 'player1') {
+        if(curPlayer == player1) {
           player1Score += 100;
-          $('#player1').text('Player1: '+player1Score)
+          $('#player1').text(player1+': '+player1Score);
         }
         else {
           player2Score += 100;
-          $('#player2').text('Player2: '+player2Score)
+          $('#player2').text(player2+': '+player2Score);
         }
       }
       else if(curIndex<6) {
-        if(curPlayer == 'player1') {
+        if(curPlayer == player1) {
           player1Score += 300;
-          $('#player1').text('Player1: '+player1Score)
+          $('#player1').text(player1+': '+player1Score);
         }
         else {
           player2Score += 300;
-          $('#player2').text('Player2: '+player2Score)
+          $('#player2').text(player2+': '+player2Score);
         }
       }
       else {
-        if(curPlayer == 'player1') {
+        if(curPlayer == player1) {
           player1Score += 500;
-          $('#player1').text('Player1: '+player1Score)
+          $('#player1').text(player1+': '+player1Score);
         }
         else {
           player2Score += 500;
-          $('#player2').text('Player2: '+player2Score)
+          $('#player2').text(player2+': '+player2Score);
         }
       }
     }
@@ -118,53 +131,65 @@ $(document).ready(function() {
     if(sol == 'bad') {
       $('#question').text('That was literally the worst answer you could have chosen.');
       if(curIndex<3) {
-        if(curPlayer == 'player1') {
+        if(curPlayer == player1) {
           player1Score -= 100;
-          $('#player1').text('Player1: '+player1Score)
+          $('#player1').text(player1+': '+player1Score);
         }
         else {
           player2Score -= 100;
-          $('#player2').text('Player2: '+player2Score)
+          $('#player2').text(player2+': '+player2Score);
         }
       }
       else if(curIndex<6) {
-        if(curPlayer == 'player1') {
+        if(curPlayer == player1) {
           player1Score -= 300;
-          $('#player1').text('Player1: '+player1Score)
+          $('#player1').text(player1+': '+player1Score);
         }
         else {
           player2Score -= 300;
-          $('#player2').text('Player2: '+player2Score)
+          $('#player2').text(player2+': '+player2Score);
         }
       }
       else {
-        if(curPlayer == 'player1') {
+        if(curPlayer == player1) {
           player1Score -= 500;
-          $('#player1').text('Player1: '+player1Score)
+          $('#player1').text(player1+': '+player1Score);
         }
         else {
           player2Score -= 500;
-          $('#player2').text('Player2: '+player2Score)
+          $('#player2').text(player2+': '+player2Score);
         }
       }
     }
   }
 
   function switchPlayer() {
-    $('#'+curPlayer).parent().css({'background-color' : 'initial'});
-    if(curPlayer == 'player1') {curPlayer='player2';}
-    else {curPlayer='player1';}
-    $('#'+curPlayer).parent().css({'background-color' : 'lightblue'});
+    var name;
+    if(curPlayer == player1) {
+      name = 'player1';
+    }
+    else {
+      name = 'player2';
+    }
+    $('#'+name).parent().css({'background-color' : 'initial'});
+    if(curPlayer == player1) {curPlayer=player2;}
+    else {curPlayer=player1;}
+    if(curPlayer == player1) {
+      name = 'player1';
+    }
+    else {
+      name = 'player2';
+    }
+    $('#'+name).parent().css({'background-color' : 'lightblue'});
   }
 
   function endGame() {
-    console.log(clicked);
     if(clicked.length == 9) {
       var winner;
-      if(player1Score>player2Score) {winner = 'player1';}
-      else {winner = 'player2';}
+      if(player1Score>player2Score) {winner = player1;}
+      else {winner = player2;}
       $('.main').css({display : 'none'});
-      $('.wrapper').prepend('<div class="row end"> <div class="col-xs-12"> <h1>Congratulations '+winner+'! You have proven yourself the better wingman.</h1> <h3>Player1\'s score: '+player1Score+'</h3> <h3>Player2\'s score: '+player2Score+'</h3> </div> </div>');
+      $('.wrapper').prepend('<div class="row end"> <div class="col-xs-12"> <h1>Congratulations '+winner+'! You have proven yourself the better wingman.</h1> <h3>'+player1+'\'s score: '+player1Score+'</h3> <h3>'+player2+'\'s score: '+player2Score+'</h3> </div> </div>');
     }
   }
 
