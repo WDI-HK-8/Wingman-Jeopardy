@@ -63,10 +63,8 @@ $(document).ready(function() {
         cur.disabled = false;
       }
     }
-    for(var a=0;a<=2;a++) {
-      var btn = $('.answer')[a];
-      $(btn).css({display : 'none'});
-    }
+    $('footer .col-xs-8').remove();
+    $('footer>section').removeClass('col-xs-4').addClass('col-xs-12');
   }
 
   function getSolution(x) {
@@ -83,11 +81,13 @@ $(document).ready(function() {
   }
 
   function initAnswers(cur) {
+    $('footer img').remove();
+    $('footer>section').removeClass('col-xs-12').addClass('col-xs-4');
+    $('footer').append('<section class="col-xs-8"> <button class="btn btn-success answer"></button> <button class="btn btn-success answer"></button> <button class="btn btn-success answer"></button> </section>')
     for(var a=0;a<=2;a++) {
       var btn = $('.answer')[a];
       var str = 'answer'+(a+1)
       $(btn).text(cur[str]);
-      $(btn).css({display : 'initial'});
     }
   }
 
@@ -127,6 +127,7 @@ $(document).ready(function() {
     }
     if(sol == 'okay') {
       $('#question').text('This is an okay answer I guess.');
+      $('footer').prepend('<img src="assets/images/shrug.png">')
     }
     if(sol == 'bad') {
       $('#question').text('That was literally the worst answer you could have chosen.');
@@ -190,10 +191,11 @@ $(document).ready(function() {
   function endGame() {
     if(clicked.length == 9) {
       var winner;
-      if(player1Score>player2Score) {winner = player1;}
-      else {winner = player2;}
+      if(player1Score>player2Score) {winner = player1+'! You have proven yourself the better wingman!!';}
+      else if(player1Score == player2Score) {winner = 'you bros tied, you are equivalent wingmen!!'}
+      else {winner = player2+'! You have proven yourself the better wingman!!';}
       $('.main').css({display : 'none'});
-      $('.wrapper').prepend('<div class="row end"> <div class="col-xs-12"> <h1>Congratulations '+winner+'! You have proven yourself the better wingman.</h1> <h3>'+player1+'\'s score: '+player1Score+'</h3> <h3>'+player2+'\'s score: '+player2Score+'</h3> </div> </div>');
+      $('.wrapper').prepend('<div class="row end"> <div class="col-xs-12"> <h1>Congratulations '+winner+'</h1> <h3>'+player1+'\'s score: '+player1Score+'</h3> <h3>'+player2+'\'s score: '+player2Score+'</h3> </div> </div>');
     }
   }
 
