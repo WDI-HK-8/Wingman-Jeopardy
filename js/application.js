@@ -81,6 +81,7 @@ $(document).ready(function() {
   }
 
   function initAnswers(cur) {
+    $('footer img').remove();
     $('footer>section').removeClass('col-xs-12').addClass('col-xs-4');
     $('footer').append('<section class="col-xs-8"> <button class="btn btn-success answer"></button> <button class="btn btn-success answer"></button> <button class="btn btn-success answer"></button> </section>')
     for(var a=0;a<=2;a++) {
@@ -126,6 +127,7 @@ $(document).ready(function() {
     }
     if(sol == 'okay') {
       $('#question').text('This is an okay answer I guess.');
+      $('footer').prepend('<img src="assets/images/shrug.png">')
     }
     if(sol == 'bad') {
       $('#question').text('That was literally the worst answer you could have chosen.');
