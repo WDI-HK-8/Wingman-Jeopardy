@@ -94,6 +94,7 @@ $(document).ready(function() {
   function updateScore(sol) {
     if(sol == 'best') {
       $('#question').text('You got this question completely right!');
+      $('footer').prepend('<img src="assets/images/bro-fist.png">');
       if(curIndex<3) {
         if(curPlayer == player1) {
           player1Score += 100;
@@ -131,6 +132,7 @@ $(document).ready(function() {
     }
     if(sol == 'bad') {
       $('#question').text('That was literally the worst answer you could have chosen.');
+      $('footer').prepend('<img src="assets/images/bad-move.png">')
       if(curIndex<3) {
         if(curPlayer == player1) {
           player1Score -= 100;
@@ -172,9 +174,8 @@ $(document).ready(function() {
     else {
       name = 'player2';
     }
-    $('#'+name).parent().css({'background-color' : 'lightblue'});
-    $('#'+name).css({'background-color' : 'lightblue'});
-    $('#'+name).css({'color' : 'black'});
+    $('#'+name).parent().css({'background-color' : '#660033'});
+    $('#'+name).css({'background-color' : '#660033'});
     if(curPlayer == player1) {curPlayer=player2;}
     else {curPlayer=player1;}
     if(curPlayer == player1) {
@@ -185,7 +186,6 @@ $(document).ready(function() {
     }
     $('#'+name).parent().css({'background-color' : '#006666'});
     $('#'+name).css({'background-color' : '#006666'});
-    $('#'+name).css({'color' : 'white'});
   }
 
   function endGame() {

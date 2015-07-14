@@ -4,10 +4,6 @@
 
 }
 
-.wrapper {
-	
-}
-
 .container img{
   position: fixed;
   top: 300px;
@@ -47,6 +43,7 @@ table {
 
 .table {
   height: 250px;
+  margin-bottom: 15px;
 }
 
 .table-bordered > tbody > tr > td {
@@ -71,6 +68,13 @@ table {
 	margin: auto;
 }
 
+.btn-success {
+  padding: 6px;
+  margin: 3px;
+  width: 210px;
+  white-space: normal;
+}
+
 nav div {
 	border-left: 1px solid black;
 	border-right: 1px solid black;
@@ -82,6 +86,15 @@ nav div {
   }
 }
 
+@media(max-width: 600px) {
+  footer > section > h3 {
+    font-size: 15px;
+  }
+  .btn-success {
+    width: 100px;
+  }
+}
+
 nav div:first-child {
 	background-color: #006666;
 }
@@ -89,6 +102,15 @@ nav div:first-child {
 #player1 {
   background-color: #006666;
   color: white;
+}
+
+#player2 {
+  background-color: #660033;
+  color: white;
+}
+
+nav div:nth-child(3) {
+  background-color: #660033;
 }
 
 nav div:nth-child(2) {
@@ -103,3 +125,23 @@ nav div:nth-child(2) {
 nav div p {
 	margin: auto;
 }
+
+footer section:nth-child(2) {
+  height: 100%;
+}
+
+footer > section > h3 {
+    margin: auto;
+    background-color: #00CCCC;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+footer img {
+  height: 200px;
+  background-color: #660033;
+  border-radius: 10px;
+  padding: 2px;
+}
+
+
