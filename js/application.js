@@ -189,14 +189,14 @@ $(document).ready(function() {
   }
 
   function endGame() {
-    // if(clicked.length == 9) {
+    if(clicked.length == 9) {
       var winner;
       if(player1Score>player2Score) {winner = player1+'! You have proven yourself the better wingman!!';}
       else if(player1Score == player2Score) {winner = 'you bros tied, you are equivalent wingmen!!'}
       else {winner = player2+'! You have proven yourself the better wingman!!';}
       $('.main').css({display : 'none'});
       $('.wrapper').prepend('<div class="row end"> <div class="col-xs-12"><section><h1>Congratulations '+winner+'</h1> <h3>'+player1+'\'s score: '+player1Score+'</h3> <h3>'+player2+'\'s score: '+player2Score+'</h3></section><img src="assets/images/ending.gif"></div></div>');
-    // }
+    }
   }
 
 	$(document).on('click','.question',function() {
