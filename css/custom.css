@@ -45,15 +45,25 @@ table {
 	height: 300px;
 }
 
+.table {
+  height: 250px;
+}
+
 .table-bordered>tbody>tr>td {
 	border: 1px solid black;
+  padding: auto;
+}
+
+.table>tbody>tr>td {
+  padding: auto;
 }
 
 .table-bordered>tbody>tr>td>button {
 	margin: auto;
 	width: 100%;
-	height: 50px;
+	height: 100%;
 	padding: auto;
+  background-color: lightgreen;
 }
 
 .btn-default {
