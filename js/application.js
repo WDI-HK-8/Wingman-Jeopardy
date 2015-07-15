@@ -18,6 +18,12 @@ $(document).ready(function() {
   var player2Score = 0;
   var secondsLeft = 15;
 
+  timer = setTimeout(function() {
+    $('.wrapper').fadeIn(1000);
+    $('.container-fluid').fadeOut(1000);
+    $('.container-fluid').remove();
+  },2000)
+
   $(document).on('click','#start',function() {
     while($('input')[0].value == '') {
       $('input')[0].value = prompt('please enter a name');
@@ -30,8 +36,8 @@ $(document).ready(function() {
     $('#player1').text(player1+': 0');
     $('#player2').text(player2+': 0');
     curPlayer = player1;
-    $('.main').show();
-    $('.container').remove();
+    $('.main').fadeIn(1000);
+    $('.container').fadeOut(1000).remove();
   })
 
   function ind(x) {
@@ -63,8 +69,8 @@ $(document).ready(function() {
         cur.disabled = false;
       }
     }
-    $('footer .col-xs-8').remove();
-    $('footer>section').removeClass('col-xs-4').addClass('col-xs-12');
+    $('footer .col-xs-7').remove();
+    $('footer>section').removeClass('col-xs-5').addClass('col-xs-12');
   }
 
   function getSolution(x) {
@@ -82,18 +88,15 @@ $(document).ready(function() {
 
   function initAnswers(cur) {
     $('footer img').remove();
-    $('footer > section').removeClass('col-xs-12').addClass('col-xs-4');
+    $('footer > section').removeClass('col-xs-12').addClass('col-xs-5');
+    $('#question').css({'text-align' : 'left'});
     var html = "";
-    html += '<section class="col-xs-8">';
-    html +=   '<button class="btn btn-success answer"></button>';
-    html +=   '<button class="btn btn-success answer"></button>';
-    html +=   '<button class="btn btn-success answer"></button>';
+    html += '<section class="col-xs-7">';
+    html +=   '<button class="btn btn-primary answer"></button>';
+    html +=   '<button class="btn btn-primary answer"></button>';
+    html +=   '<button class="btn btn-primary answer"></button>';
     html += '</section>';
     $('footer').append(html);
-    // the below method did not work
-    // $('.answer').forEach(function(btn, index) {
-    //   $(btn).text(cur['answer'+(index+1)]);
-    // });
     for(var a = 0; a <= 2; a++) {
       var btn = $('.answer')[a];
       var str = 'answer'+(a+1); 
@@ -160,13 +163,16 @@ $(document).ready(function() {
   function updateScore(sol) {
     if(sol == 'best') {
       $('#question').text('You got this question completely right!');
+      $('#question').css({'text-align' : 'center'});
       $('footer').prepend('<img src="assets/images/bro-fist.png">');
       addScore();
     } else if(sol == 'okay') {
       $('#question').text('This is an okay answer I guess.');
+      $('#question').css({'text-align' : 'center'});
       $('footer').prepend('<img src="assets/images/shrug.png">')
     } else {
       $('#question').text('That was literally the worst answer you could have chosen.');
+      $('#question').css({'text-align' : 'center'});
       $('footer').prepend('<img src="assets/images/bad-move.png">')
       subtractScore();
     }
@@ -180,8 +186,7 @@ $(document).ready(function() {
     else {
       name = 'player2';
     }
-    $('#'+name).parent().css({'background-color' : '#660033'});
-    $('#'+name).css({'background-color' : '#660033'});
+    $('#'+name).parent().css({'background-color': '#FF9800'});
     if(curPlayer == player1) {curPlayer=player2;}
     else {curPlayer = player1;}
     if(curPlayer == player1) {
@@ -190,18 +195,20 @@ $(document).ready(function() {
     else {
       name = 'player2';
     }
-    $('#' + name).parent().css({'background-color' : '#006666'});
-    $('#' + name).css({'background-color' : '#006666'});
+    $('#' + name).parent().css({'background-color': '#FFECB3'});
   }
 
   function endGame() {
     if(clicked.length == 9) {
-      var winner;
-      if(player1Score > player2Score) {winner = player1 + '! You have proven yourself the better wingman!!';}
-      else if(player1Score == player2Score) {winner = 'you bros tied, you are equivalent wingmen!!'}
-      else {winner = player2 + '! You have proven yourself the better wingman!!';}
-      $('.main').css({display : 'none'});
-      $('.wrapper').prepend('<div class="row end"> <div class="col-xs-12"><section><h1>Congratulations ' + winner + '</h1> <h3>'+player1 + '\'s score: ' + player1Score + '</h3> <h3>' + player2 + '\'s score: ' + player2Score + '</h3></section><img src="assets/images/ending.gif"></div></div>');
+      setTimeout(function() {
+        var winner;
+        if(player1Score > player2Score) {winner = player1 + '! You have proven yourself the better wingman!!';}
+        else if(player1Score == player2Score) {winner = 'you bros tied, you are equivalent wingmen!!'}
+        else {winner = player2 + '! You have proven yourself the better wingman!!';}
+        $('.wrapper').prepend('<div class="row end"> <div class="col-xs-12"><section><h1>Congratulations ' + winner + '</h1> <h3>'+player1 + '\'s score: ' + player1Score + '</h3> <h3>' + player2 + '\'s score: ' + player2Score + '</h3></section><img src="assets/images/ending.gif"></div></div>');
+        $('.main').css({display : 'none'});
+        $('.end').fadeIn(2000);
+      },3000);
     }
   }
 
@@ -214,17 +221,17 @@ $(document).ready(function() {
     initAnswers(cur);
     $('#timer').text('Timer: ' + secondsLeft);
     timer = setInterval(function() {
-        $('#timer').text('Timer: ' + secondsLeft);
-        if(secondsLeft == 0) {
-          enableGraph();
-          secondsLeft = 16;
-          updateScore('bad');
-          $('#question').text('Guess you couldn\'t choose in time, too bad! Next Players turn...');
-          switchPlayer();
-          endGame();
-          clearInterval(timer);
-        }
-        secondsLeft --;
+      $('#timer').text('Timer: ' + secondsLeft);
+      if(secondsLeft == 0) {
+        enableGraph();
+        secondsLeft = 16;
+        updateScore('bad');
+        $('#question').text('Guess you couldn\'t choose in time, too bad! Next Players turn...');
+        switchPlayer();
+        endGame();
+        clearInterval(timer);
+      }
+      secondsLeft --;
     },1000);
   });
 

@@ -12,16 +12,21 @@
     <script src="js/application.js"></script>
 </head>
 <body>
+	<div class="container-fluid">
+		<section>
+			<h1>WELCOME BROS</h1>
+		</section>
+	</div>
 	<div class="wrapper">
 		<div class="container">
-			<h1>WELCOME BROS! Are you ready to see who the better wingman is?</h1>
+			<h1>Are you ready to see who the better wingman is?</h1>
 			<p>Player 1: <input type="text" placeholder="name"><p>
 			<p>Player 2: <input type="text" placeholder="name"><p>
 			<button class="btn btn-primary" id="start">Start</button>
 			<img src="assets/images/wingman.png">
 		</div>
 		<div class="row main">
-			<nav class = "col-xs-12">
+			<nav class = "col-xs-12 main-div">
 				<div class="col-xs-4">
 					<h3 id="player1">Player 1: 0</h3>
 				</div>
@@ -32,8 +37,8 @@
 					<h3 id="player2">Player 2: 0</h3>
 				</div>
 			</nav>
-			<div class="col-xs-12">
-				<table class="table table-bordered">
+			<div class="col-xs-12 main-div" id="table-holder">
+				<table class="table table-bordered" id="table">
 					<tr>
 						<td><button class="btn btn-default question">100</button></td>
 						<td><button class="btn btn-default question">100</button></td>
@@ -51,7 +56,7 @@
 					</tr>
 				</table>
 			</div>
-			<footer class="col-xs-12">
+			<footer class="col-xs-12 main-div">
 				<section class="col-xs-12">
 					<h3 id="question">
 						The number indicates the number of points you will receive upon a correct answer, once you choose a question you will have 10 seconds to answer.
