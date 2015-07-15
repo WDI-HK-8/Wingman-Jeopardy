@@ -4,10 +4,6 @@
 
 }
 
-.wrapper {
-	
-}
-
 .container img{
   position: fixed;
   top: 300px;
@@ -47,18 +43,19 @@ table {
 
 .table {
   height: 250px;
+  margin-bottom: 15px;
 }
 
-.table-bordered>tbody>tr>td {
+.table-bordered > tbody > tr > td {
 	border: 1px solid black;
   padding: auto;
 }
 
-.table>tbody>tr>td {
+.table > tbody > tr > td {
   padding: auto;
 }
 
-.table-bordered>tbody>tr>td>button {
+.table-bordered > tbody > tr > td > button {
 	margin: auto;
 	width: 100%;
 	height: 100%;
@@ -72,7 +69,10 @@ table {
 }
 
 .btn-success {
-	display: none;
+  padding: 6px;
+  margin: 3px;
+  width: 210px;
+  white-space: normal;
 }
 
 nav div {
@@ -80,9 +80,31 @@ nav div {
 	border-right: 1px solid black;
 }
 
+.end img {
+  width: 700px;
+  background-color: #660033;
+  border-radius: 10px;
+  padding: 2px;
+}
+
+@media(max-width: 600px) {
+  footer > section > h3 {
+    font-size: 15px;
+  }
+  .btn-success {
+    width: 100px;
+  }
+  .end img {
+    width: 500px;
+  }
+}
+
 @media(max-width: 430px) {
   nav div {
     height: 85px;
+  }
+  .end img {
+    width: 300px;
   }
 }
 
@@ -93,6 +115,15 @@ nav div:first-child {
 #player1 {
   background-color: #006666;
   color: white;
+}
+
+#player2 {
+  background-color: #660033;
+  color: white;
+}
+
+nav div:nth-child(3) {
+  background-color: #660033;
 }
 
 nav div:nth-child(2) {
@@ -106,4 +137,22 @@ nav div:nth-child(2) {
 
 nav div p {
 	margin: auto;
+}
+
+footer section:nth-child(2) {
+  height: 100%;
+}
+
+footer > section > h3 {
+  margin: auto;
+  background-color: #00CCCC;
+  border-radius: 10px;
+  padding: 10px;
+  }
+
+footer img {
+  height: 200px;
+  background-color: #660033;
+  border-radius: 10px;
+  padding: 2px;
 }
