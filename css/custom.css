@@ -18,7 +18,7 @@ body {
   right: 400px;
 }
 
-.container-fluid > section > h1 {
+.container-fluid > section > h2 {
   margin: 0px;
   padding: 5px;
   font-size: 40px;

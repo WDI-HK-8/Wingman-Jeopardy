@@ -22,7 +22,7 @@ $(document).ready(function() {
     $('.wrapper').fadeIn(1000);
     $('.container-fluid').fadeOut(1000);
     $('.container-fluid').remove();
-  },2000)
+  },2000);
 
   $(document).on('click','#start',function() {
     while($('input')[0].value == '') {
@@ -38,10 +38,10 @@ $(document).ready(function() {
     curPlayer = player1;
     $('.main').fadeIn(1000);
     $('.container').fadeOut(1000).remove();
-  })
+  });
 
   function ind(x) {
-    for(var a=0;a<=8;a++) {
+    for(var a = 0; a <= 8; a++) {
       if($('.question')[a] == x) {
         return a;
       }
@@ -50,7 +50,7 @@ $(document).ready(function() {
 
   function disableGraph(x) {
     clicked.push(x);
-    for(var a=0;a<=8;a++) {
+    for(var a = 0; a <= 8; a++) {
       var cur = $('.question')[a];
       cur.disabled = true;
     }
@@ -99,7 +99,7 @@ $(document).ready(function() {
     $('footer').append(html);
     for(var a = 0; a <= 2; a++) {
       var btn = $('.answer')[a];
-      var str = 'answer'+(a+1); 
+      var str = 'answer'+(a+1);
       $(btn).text(cur[str]);
     }
   }
