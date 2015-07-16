@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  //multiplayer
   var array = [{question : "Your Bro is super drunk and has thrown up, the girl he likes shows up, do you...", answer1 : 'Grab him and run', answer2 : 'Say it\'s your throw up', answer3 : 'Tell her that she looks beautiful', best : 'answer2', okay : 'answer1', bad : 'answer3'},
   {question : "Your Bro is partying hard when his mom calls and says that she wants him home, do you...", answer1 : 'Tell your Bro to leave', answer2 : 'Tell her to f*** off', answer3 : 'Pretend like you\'re an answering machine', best : 'answer3', okay : 'answer1', bad : 'answer2'},
   {question : "You go to the gym with your Bro and his girl, she lifts more than him, do you...", answer1 : 'Tell your Bro he has to break up with her', answer2 : 'Start looking for a new Bro', answer3 : 'Start giving your Bro steriods', best : 'answer3', okay : 'answer1', bad : 'answer2'},
@@ -27,7 +28,7 @@ $(document).ready(function() {
     $('.container-fluid').remove();
   },2000);
 
-  $(document).on('click','#start',function() {
+  $(document).on('click','#double-start',function() {
     while($('input')[0].value == '') {
       $('input')[0].value = prompt('please enter a name');
     }
@@ -40,7 +41,9 @@ $(document).ready(function() {
     $('#player2').text(player2+': 0');
     curPlayer = player1;
     $('.main').fadeIn(1000);
-    $('.container').fadeOut(1000).remove();
+    $('.main-div').show();
+    $('.single').hide();
+    $('.enter').fadeOut(1000).hide();
   });
 
   function ind(x) {
@@ -223,9 +226,11 @@ $(document).ready(function() {
 
   $(document).on('click','#reset',function() {
     $('.end').fadeOut(800, function() {
-      $('.wrapper').prepend('<div class="container"> <h1>Are you ready to see who the better wingman is?</h1> <p>Player 1: <input type="text" placeholder="name"><p> <p>Player 2: <input type="text" placeholder="name"><p> <button class="btn btn-primary" id="start">Start</button> <img src="assets/images/wingman.png" alt="..."> </div>');
+      $('.enter').fadeIn(1000);
       $('.end').remove();
     });
+    $('input')[0].value = '';
+    $('input')[1].value = '';
     clicked = [];
     curIndex = -1;
     switchPlayer();
@@ -235,6 +240,85 @@ $(document).ready(function() {
     enableGraph();
     $('#question').text('The number indicates the number of points you will receive upon a correct answer, once you choose a question you will have 10 seconds to answer.');
     $('footer img').remove();
+  });
+
+  //single player
+  var singleIndex = 0;
+  var singleScore = 0;
+  var singleArray = [{q : 'Where do you prefer to party?', a1 : 'I don\'t party', a2 : 'House party', a3 : 'club'},
+  {q : 'What do you drink?', a1 : 'Only Mike\'s Hard Lemonade', a2 : 'Beer', a3 : 'Hard alcohol'},
+  {q : 'What do you do for fun?', a1 : 'Knit', a2 : 'Pong', a3 : 'Skydive'},
+  {q : 'How often do you say Bro?', a1 : 'Never', a2 : 'A lot', a3 : 'Every sentence bro'},
+  {q : 'What did you think of The Hangover?', a1 : 'What\'s that', a2 : 'Loved it', a3 : 'That movie is my life'},
+  {q : 'What do you think of frats?', a1 : 'Who cares', a2 : 'I like them', a3 : 'I am frat'},
+  {q : 'Where do you prefer to party?', a1 : 'I don\'t party', a2 : 'House party', a3 : 'club'},
+  {q : 'Do you day drink?', a1 : 'Never', a2 : 'Sometimes', a3 : 'I brush my teeth with vodka'},
+  {q : 'Do you take selfies at the gym?', a1 : 'Never', a2 : 'Yes but not obnoxiously', a3 : 'My people have to know'},
+  {q : 'How often do you say YOLO?', a1 : 'Never', a2 : 'Sometimes', a3 : 'Best phrase ever'}];
+
+  function endSingleGame() {
+    var endText;
+    setTimeout(function() {
+      if(singleScore < 15) {endText = 'You don\'t disply qualities evident of a bro, that\'s fine though, it isn\'t for everyone.';}
+      else if(singleScore < 25) {endText = 'You are evidently a classic bro, go back to your beer pong bromigo.';}
+      else {endText = 'You have actually taken bro to the next level, are you even human?';}
+      $('.wrapper').prepend('<div class="row end"><div class="col-xs-12"><section><h1>' + endText + '</h1><section><img src="assets/images/giphy.gif"></div><div class="col-xs-12"><button id="single-reset" class="btn btn-primary">Reset</button></div></div>');
+      $('.main').css({display : 'none'});
+      $('.end').fadeIn(2000);
+    },1000);
+  }
+
+  $(document).on('click','#single-start',function() {
+    $('.main').fadeIn(1000);
+    $('.single').show();
+    $('.main-div').hide();
+    $('.enter').fadeOut(1000).hide();
+  });
+
+  function scorer(x) {
+    for(a in singleArray[singleIndex]) {
+      if(singleArray[singleIndex][a] == x) {
+        y = a.slice(1);
+        singleScore += parseInt(y);
+      }
+    }
+  }
+
+  $(document).on('click','.btn-info',function() {
+    scorer($(this).text());
+    $(this).blur();
+    if(singleIndex != 9) {
+      singleIndex ++;
+      var cur = singleArray[singleIndex];
+      $('#single-question').text(cur.q);
+      for(var a = 0; a < 3; a++) {
+        var str = $('.btn-info')[a];
+        var ind = 'a'+(a+1);
+        $(str).text(cur[ind]);
+      }
+
+    } else {
+      for(var a = 0; a < 3; a++) {
+        $('.btn-info')[a].disabled = true;
+      }
+      endSingleGame();
+    }
+  });
+
+  $(document).on('click','#single-reset',function() {
+    $('#single-reset').disabled = true;
+    $('.end').fadeOut(800, function() {
+      $('.enter').fadeIn(500);
+      $('.end').remove();
+    });
+    singleIndex = 0;
+    singleScore = 0;
+    for(var a = 0; a < 3; a++) {
+        $('.btn-info')[a].disabled = false;
+    }
+    $('#single-reset').disabled = false;
+    $('input')[0].value = '';
+    $('input')[1].value = '';
   });
 
 });
