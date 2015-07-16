@@ -21,12 +21,17 @@
 		</section>
 	</div>
 	<div class="wrapper">
-		<div class="container">
-			<h1>Are you ready to see who the better wingman is?</h1>
+		<div class="row enter">
+		<div class="col-xs-6 container">
+			<h1>Who is the better Wingman</h1>
 			<p>Player 1: <input type="text" placeholder="name"><p>
 			<p>Player 2: <input type="text" placeholder="name"><p>
-			<button class="btn btn-primary" id="start">Start</button>
-			<img src="assets/images/wingman.png" alt="...">
+			<button class="btn btn-primary" id="double-start">Compete</button>
+		</div>
+		<div class="col-xs-6 container">
+			<h1>Find out what kind of Bro you are</h1>
+			<button class="btn btn-primary" id="single-start">Test</button>
+		</div>
 		</div>
 		<div class="row main">
 			<nav class = "col-xs-12 main-div">
@@ -63,6 +68,12 @@
 						<td><button class="btn btn-default question">550</button></td>
 					</tr>
 				</table>
+			</div>
+			<div class="col-xs-12 single">
+					<h2 id="single-question">Where do you prefer to party?</h2>
+					<button class="btn btn-info">I don't party</button>
+					<button class="btn btn-info">House party</button>
+					<button class="btn btn-info">Club</button>
 			</div>
 			<footer class="col-xs-12 main-div">
 				<section class="col-xs-12">
