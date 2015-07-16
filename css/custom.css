@@ -1,5 +1,6 @@
 * {
 	text-align: center;
+  font-family: 'Avenir';
 }
 
 body {
@@ -14,14 +15,14 @@ body {
   position: fixed;
   background-color: #607D8B;
   border-radius: 10px;
-  width: 400px;
+  width: 500px;
   right: 400px;
 }
 
 .container-fluid > section > h2 {
   margin: 0px;
   padding: 5px;
-  font-size: 40px;
+  font-size: 50px;
   color: white;
 }
 
@@ -187,9 +188,18 @@ footer img {
   margin-top: 15px;
 }
 
+#reset {
+  width: 200px;
+  height: 50px;
+  margin-top: 50px;
+}
+
 @media(max-width: 1000px) {
   .container img {
     top: 360px;
+  }
+  .container-fluid > section {
+    right: 300px;
   }
 }
 
@@ -197,12 +207,12 @@ footer img {
   .btn-primary {
     width: 400px;
   }
-}
-
-@media(max-width: 860px) {
   .container-fluid > section {
     right: 200px;
   }
+}
+
+@media(max-width: 860px) {
   .main-div {
     margin: 2px;
     padding: 5px;
@@ -220,6 +230,9 @@ footer img {
   #question {
     padding: 0px;
   }
+  .container-fluid > section {
+    right: 100px;
+  }
 }
 
 @media(max-width: 600px) {
@@ -234,6 +247,10 @@ footer img {
   }
   .container-fluid > section {
     right: 50px;
+    width: 400px;
+  }
+  .container-fluid > section > h2 {
+    font-size: 40px;
   }
 }
 
